@@ -11,4 +11,10 @@ public interface ItemsDAO {
     public Collection<Item> getList();
 
     public void set(Item item);
+
+    public void update(Item item);
+
+    public Collection<Item> getFinishedItems();
+
+    public Collection<Item> getCategoryList(Long catID);
 }

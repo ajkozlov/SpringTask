@@ -4,24 +4,29 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-//@Table(name = "Items")
+@Table(name = "Items")
 public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String article;
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
     private String title;
+    private String description;
     private Integer quantity;
-    private Float price;
+    private Double price;
 
     public Item() {
     }
 
-    public Item(Long id, String article, String title, Integer quantity, Float price) {
-        this.id = id;
+    public Item(String article, Category category, String title, String description, Integer quantity, Double price) {
         this.article = article;
+        this.category = category;
         this.title = title;
+        this.description = description;
         this.quantity = quantity;
         this.price = price;
     }
@@ -50,6 +55,14 @@ public class Item implements Serializable {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Integer getQuantity() {
         return quantity;
     }
@@ -58,11 +71,24 @@ public class Item implements Serializable {
         this.quantity = quantity;
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "aaa";
     }
 }

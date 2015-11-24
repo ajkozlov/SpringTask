@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-        <property name="url" value="jdbc:hsqldb:hsql://localhost/shopDb"/>
-        <property name="username" value="SA"/>
-        <property name="password" value=""/>
-    </bean>
+    <context:component-scan base-package="ru.av"/>
 
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="ru.av.entities"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.connection.pool_size">10</prop>
-                <prop key="hibernate.connection.show_sql">true</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-            </props>
-        </property>
-    </bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/jsp/" p:suffix=".jsp"/>
+
 
     <bean id="itemsDAO" class="ru.av.dao.ItemsDAOImpl">
-        <constructor-arg ref="sessionFactory"/>
+        <property name="sessionFactory" ref="sessionFactory" />
         <property name="showAll" value="true"/>
     </bean>
+
+    <bean id="basketDAO" class="ru.av.dao.BasketDAOImpl"/>
+
+    <import resource="securityContext.xml" />
+    <import resource="dbConfig.xml"/>
 
 </beans>

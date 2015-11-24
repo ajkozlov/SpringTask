@@ -1,0 +1,13 @@
+ SET DATABASE TEXT TABLE DEFAULTS 'encoding=UTF-8';
+insert into Category values(1, 'Мясо');
+insert into Category values(2, 'Молоко');
+insert into Items (article, category_id, title, description, quantity, price) values('000643', 2, 'qwe', 'qqqqqqqqqqqqqqqqqq', 10, 75.4);
+insert into Items (article, category_id, title, description, quantity, price) values('253759', 2, 'asd', 'wwwwwwwwwwwwwwwwww', 3, 76.6);
+insert into Items (article, category_id, title, description, quantity, price) values('248511', 1, 'asf', 'eeeeeeeeeeeeeeeeee', 7, 515);
+insert into Items (article, category_id, title, description, quantity, price) values('245279', 2, 'zcx', 'rrrrrrrrrrrrrrrrrr', 25, 345);
+insert into Items (article, category_id, title, description, quantity, price) values('092407', 1, 'tyu', 'tttttttttttttttttt', 2, 575);
+insert into Items (article, category_id, title, description, quantity, price) values('ТОВ000643', 2, 'Молоко ультрапастеризованное Parmalat', 'Натуральное коровье молоко, прошедшее процедуру ультрапастеризации, отличается деликатным сливочным вкусом и легким ароматом.', 0, 75.4);
+insert into Items (article, category_id, title, description, quantity, price) values('ТОВ253759', 2, 'Молоко ультрапастеризованное Домик в деревне', 'Цельное коровье молоко высшего сорта обработано по особой современной технологии, гарантирующей сохранность полезных .', 0, 76.6);
+insert into Items (article, category_id, title, description, quantity, price) values('ТОВ248511', 1, 'Азу из телятины ', 'Небольшие кусочки телятины натурального красного цвета с небольшим количеством пленочек и жировых прослоек.', 0, 515);
+insert into Items (article, category_id, title, description, quantity, price) values('ТОВ245279', 1, 'Фарш из телятины ', 'Небольшие кусочки телятины натурального красного цвета с небольшим количеством пленочек и жировых прослоек.', 0, 345);
+insert into Items (article, category_id, title, description, quantity, price) values('ТОВ092407', 1, 'Стейк из телятины охлажденный ', 'Небольшие кусочки телятины натурального красного цвета с небольшим количеством пленочек и жировых прослоек.', 0, 575);

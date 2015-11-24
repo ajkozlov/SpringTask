@@ -2,11 +2,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>SpringTask</groupId>
-    <artifactId>1</artifactId>
+    <artifactId>SpringTask</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
     <name>1 Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+    <properties>
+        <spring.version>4.1.6.RELEASE</spring.version>
+        <spring.sequrity.version>4.0.3.RELEASE</spring.sequrity.version>
+        <hibernate.version>4.3.11.Final</hibernate.version>
+        <hsqldb.version>2.3.3</hsqldb.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -19,56 +27,54 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.1</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.1.6.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.1.6.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.1.6.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.1.6.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>4.1.6.RELEASE</version>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.sequrity.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>3.2.7.RELEASE</version>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.sequrity.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-            <version>3.5.4-Final</version>
-            <type>pom</type>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>3.5.6-Final</version>
-        </dependency>
+
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>2.3.3</version>
-        </dependency>
-        <dependency>
-            <groupId>asm</groupId>
-            <artifactId>asm</artifactId>
-            <version>3.3.1</version>
+            <version>${hsqldb.version}</version>
         </dependency>
 
 
@@ -87,8 +93,15 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
     </dependencies>
     <build>
-        <finalName>1</finalName>
+        <finalName>SpringTask</finalName>
     </build>
 </project>

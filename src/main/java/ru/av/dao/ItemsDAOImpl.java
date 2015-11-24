@@ -1,44 +1,47 @@
 package ru.av.dao;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import ru.av.entities.Category;
 import ru.av.entities.Item;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 
-public class ItemsDAOImpl implements ItemsDAO {
-    private SessionFactory sessionFactory;
+public class ItemsDAOImpl extends HibernateDaoSupport implements ItemsDAO {
 
     private Boolean showAll = true;
-
-    public ItemsDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     public void setShowAll(Boolean showAll) {
         this.showAll = showAll;
     }
 
     public Item get(Long id) {
-        Session session = sessionFactory.getCurrentSession();
-        return (Item) session.get(Item.class, id);
+        return getHibernateTemplate().get(Item.class, id);
     }
 
     public Collection<Item> getList() {
-        Session session = sessionFactory.getCurrentSession();
-        Query query;
-        if(this.showAll) {
-            query = session.createQuery("from Items i");
-        } else {
-            query = session.createQuery("from Items i where i.quontity > 0");
+        Criteria criteria = currentSession().createCriteria(Item.class);
+        if(!this.showAll) {
+            criteria.add(Restrictions.gt("quantity", 0));
         }
-        return query.list();
+        return criteria.list();
     }
 
     public void set(Item item) {
-        Session session = sessionFactory.getCurrentSession();
-        session.save(item);
+        getHibernateTemplate().save(item);
     }
+
+    public void update(Item item) {
+        getHibernateTemplate().update(item);
+    }
+
+    public Collection<Item> getFinishedItems() {
+        return currentSession().createCriteria(Item.class).add(Restrictions.eq("quantity", 0)).list();
+    }
+
+    public Collection<Item> getCategoryList(Long catID) {
+        return currentSession().createCriteria(Item.class).add(Restrictions.eq("category", getHibernateTemplate().get(Category.class, catID))).list();
+    }
+
 }
