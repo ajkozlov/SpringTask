@@ -12,7 +12,6 @@ public class Item implements Serializable {
     private Long id;
     private String article;
     @ManyToOne
-    @JoinColumn(name="category_id")
     private Category category;
     private String title;
     private String description;

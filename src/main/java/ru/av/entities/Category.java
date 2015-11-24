@@ -11,7 +11,7 @@ public class Category {
     private Long id;
     private String title;
 
-    @OneToMany(mappedBy="category")
+    @OneToMany
     private Set<Item> items;
 
     public Category(Long id, String title) {
